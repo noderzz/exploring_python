@@ -1,7 +1,13 @@
 import imageio
+import os
+
+frame_filenames = []
+files = os.listdir("./frames")
+files = [f for f in files if os.path.isfile(os.path.join("./frames", f))]
 
 # Create a list of the file names of the frames.
-frame_filenames = [f"frames/frame_{i:02d}.png" for i in range(1, 23)]
+for filename in os.listdir("."):
+    frame_filenames = [f"frames/frame_{i:02d}.png" for i in range(1, len(files))]
 # Define the output file name and path for the video
 output_file = "video/test_video.mp4"
 
