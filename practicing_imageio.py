@@ -1,3 +1,9 @@
+"""
+I was unable to get this to work with the audio version and was repeatedly getting this error:
+
+ValueError: Could not find a backend to open `./audio/ev.mp3`` with iomode `r?`.
+"""
+
 import imageio
 import os
 
@@ -24,7 +30,7 @@ for filename in frame_filenames:
     writer.append_data(frame)
 
 # Load the audio file using imageio
-audio = imageio.get_reader(audio_file, plugin='pydub')
+audio = imageio.get_reader(audio_file, plugin='ffmpeg')
 
 # Add the audio track to the video writer
 writer.add_audio(audio)
