@@ -4,7 +4,7 @@ import subprocess
 # Set the paths to the input image frames, audio file, and output video file
 input_path = "./frames"
 audio_path = "./audio/ev.mp3"
-output_file = "./test_video.mp4"
+output_file = "./video/test_video.mp4"
 
 # Set the frame rate for the output video
 frame_rate = 30
