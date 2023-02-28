@@ -1,19 +1,23 @@
-f = open("coordinates.csv","r+")
-scheduleLines = f.read().split("\nSECTION\n")
+import numpy as np
+
+f = open("phoneme_list.csv","r+")
+scheduleLines = f.read().split("\n")
 f.close()
 
 PARTS_COUNT = 5
-schedules = [None]*PARTS_COUNT
+FRAME_RATE = 30
+phonemeTimeline = []
 
-for i in range(PARTS_COUNT):
-    schedules[i] = scheduleLines[0].split("\n") #Error because scheduleLines is one list item long (0)
-    if i == 4:
-        schedules[i] = schedules[i][0:-1]
+def timestepToFrames(timestep):
+    return max(0,int(timestep*FRAME_RATE-2))
 
-print(schedules)
+for i in range(len(scheduleLines)):
+    parts = scheduleLines[i].split(",")
+    timestamp = float(parts[0])
+    framestamp = timestepToFrames(timestamp)
+    phoneme = parts[2]
+    phonemeTimeline.append([phoneme,framestamp])
 
-#for i in scheduleLines:
-#    print(i.split("\n"))
-
-#print(schedules[4])
-#for i in range(len(schedules[4])):
+LAST_FRAME = int(phonemeTimeline[-1][-1]) + 1
+phonemeTimeline.append(["end",LAST_FRAME])
+print(phonemeTimeline)
