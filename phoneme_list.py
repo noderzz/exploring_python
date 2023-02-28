@@ -67,3 +67,5 @@ for i in range(WORD_COUNT):
 
 print(strings[4])
 
+with open('phoneme_list.csv', 'w') as file:
+    file.write(strings[4])
